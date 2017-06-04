@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <script type="text/javascript">
+
+ function onCLickFunction()
+ {
+	alert('Hi');
+	
+	var xhr = new XMLHttpRequest();
+var url = "http://localhost:8081/user";
+xhr.open("GET", url, true);
+xhr.setRequestHeader("Content-type", "application/json");
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        var json = JSON.parse(xhr.responseText);
+        console.log(json.email + ", " + json.password);
+    }
+};
+xhr.send();
+ }
+ 
+</script>
+
+<body>
+
+<form onSubmit="JavaScript:onCLickFunction()">
+  First name:<br>
+  <input type="text" name="firstname" value="">
+  <br>
+  Last name:<br>
+  <input type="text" name="lastname" value="">
+  <br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+
+</body>
+</html>
